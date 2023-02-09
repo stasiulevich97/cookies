@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Homework 29</title>
+</head>
+<body onload="checkCookie()">
+    <div hidden class="formRegisterWrapp" id="formRegisterWrapp">
+        <form id="registerForm">
+            <p class="formRegTitle">Registration</p>
+           
+            <div class="input_wrap">
+                <div class="errorWrapp">
+                    <label for="email">Email:</label>
+                    <div hidden class="error">Wrong email address</div>
+                </div>
+                <input type="text" name="email" id="email" class="registrInput">
+            </div>
+
+            <div class="input_wrap">
+                <div class="errorWrapp">
+                    <label for="password">Password:</label>
+                </div>
+                <input type="password" id="password" class="registrInput">
+            </div>
+
+            <div class="input_wrap">
+                <div class="errorWrapp">
+                    <label for="passwordRepeat">Repeat:</label>
+                    <div hidden class="error">Passwords must match</div>
+                </div>
+                <input type="password"  id="passwordRepeat" class="registrInput">
+            </div>
+
+            <div class="registerBtnBlock">
+                <button class="registerBtn" onclick="regCookie()" type="button">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+    <div hidden class="addFormWrapp" id="addFormWrapp">
+        <div class="headerBlock">
+            <div id="helloEmail"></div>
+            <button id="exitBtn" onclick="deleteCookies()">Exit</button>
+        </div>
+
+        <form  id="additionalInfoForm">
+            <p class="formAddTitle">User info</p>
+
+            <div class="addInputBlocks">
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="email">First name:</label>
+                        <div hidden  class="error">Enter first name correctly</div>
+                    </div>
+                    <input type="text" name="firstName" id="firstName" class="additionalInput">
+                </div>
+
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="lastName">Last name:</label>
+                        <div hidden  class="error">Enter last name correctly</div>
+                    </div>
+                    <input type="text" name="lastName" id="lastName" class="additionalInput">
+                </div>
+
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="yearOfBirth">Year of birth:</label>
+                        <div hidden  class="error">Enter year correctly</div>
+                    </div>
+                    <input type="text" name="yearOfBirth" id="yearOfBirth" class="additionalInput">
+                </div>
+
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="gender">Gender:</label>
+                    </div>
+                    <select name="gender" id="gender" class="additionalInput">
+                        <option selected value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                </div>
+
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="phoneNumber">Phone number:</label>
+                        <div hidden  class="error">Enter phone correctly</div>
+                    </div>
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="additionalInput">
+                </div>
+
+                <div class="addInput_wrap">
+                    <div class="addErrorWrapp">
+                        <label for="skype">Skype:</label>
+                        <div hidden  class="error">Enter skype correctly</div>
+                    </div>
+                    <input type="text" name="skype" id="skype" class="additionalInput">
+                </div>
+            </div>
+            <div class="addBtnBlock">
+                <button id="addBtn" onclick="addCookie()" type="button">Save</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script src="./scripts/checkForms.js"></script>
+    
+    <script type="text/javascript">
+
+
+    function checkCookie(){
+        let regForm = document.getElementById('formRegisterWrapp')
+        let addForm = document.getElementById('addFormWrapp')
+        let userEmail = document.getElementById('email').value
+
+        let cookieArr = document.cookie.split("; ")
+        let cookieObject = {}
+
+        for ( let i = 0; i<cookieArr.length; i++ ) {
+            let cookies = cookieArr[i].split('=')
+            cookieObject[cookies[0]] = cookies[1]
+        }
+
+        if('userEmail' in cookieObject){
+            regForm.hidden = true
+            addForm.hidden = false
+            document.getElementById('helloEmail').innerHTML = "Hello, " + cookieObject['userEmail']
+            checkAddCookie()
+        }else{
+            addForm.hidden = true
+            regForm.hidden = false
+           
+        }
+    }
+
+    
+    function regCookie(){
+        if(checkRegForm()){
+            let userEmail = document.getElementById('email').value
+            let expDate = new Date
+            expDate.setTime((new Date).getTime() + 120*1000) //прибавили 60 секунд
+
+            document.cookie = "userEmail=" + userEmail + "; expires=" + expDate.toGMTString() + "; path=/"
+            checkCookie()
+        }
+    }
+
+
+    function deleteCookies(){
+        let expDate = new Date
+        expDate.setHours((new Date).getHours()-1);
+        let userEmail = document.getElementById('email').value
+        document.cookie = "userEmail=" + userEmail + "; expires=" + expDate.toGMTString() + "; path=/"
+
+        return true;
+    }
+
+
+    function addCookie(){
+        if(checkAddForm()){
+            let firstName = document.getElementById('firstName').value
+            let lastName = document.getElementById('lastName').value
+            let yearOfBirth = document.getElementById('yearOfBirth').value
+            let phoneNumber = document.getElementById('phoneNumber').value
+            let skype = document.getElementById('skype').value
+
+            let expDate = new Date
+            expDate.setTime((new Date).getTime() + 120*1000) //прибавили 60 секунд
+
+            document.cookie = "firstName=" + firstName + "; expires=" + expDate.toGMTString() + "; path=/"
+            document.cookie = "lastName=" + lastName + "; expires=" + expDate.toGMTString() + "; path=/"
+            document.cookie = "yearOfBirth=" + yearOfBirth + "; expires=" + expDate.toGMTString() + "; path=/"
+            document.cookie = "phoneNumber=" + phoneNumber + "; expires=" + expDate.toGMTString() + "; path=/"
+            document.cookie = "skype=" + skype + "; expires=" + expDate.toGMTString() + "; path=/"
+            }
+            checkAddCookie()
+    }
+        
+       
+   
+
+
+    function checkAddCookie(){
+        let cookieArr = document.cookie.split("; ")
+        let cookieObject = {}
+
+        for ( let i = 0; i<cookieArr.length; i++ ) {
+            let cookies = cookieArr[i].split('=')
+            cookieObject[cookies[0]] = cookies[1]
+        }
+
+        if('firstName' in cookieObject){
+            firstName.value = cookieObject["firstName"];
+            lastName.value = cookieObject["lastName"];
+            yearOfBirth.value = cookieObject["yearOfBirth"];
+            phoneNumber.value = cookieObject["phoneNumber"];
+            skype.value = cookieObject["skype"];
+        }
+    }
+
+
+    
+    </script>
+</body>
+</html> 

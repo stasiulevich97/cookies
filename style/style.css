@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.formRegisterWrapp{
+    margin: 50px auto;
+    background-color:bisque;
+    width: 60%;
+    height:500px ;
+}
+.formRegTitle{
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+.errorWrapp{
+    display: flex; 
+    justify-content: space-between;
+}
+.errorWrapp label{
+    margin: 0 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.errorWrapp div{
+    margin: 0 2rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: red;
+}
+.registrInput{
+    margin:  1rem;
+    width: 95%;
+    height: 3rem;
+    outline: none;
+}
+.registerBtnBlock {
+    display: flex;
+    justify-content: center;
+}
+.registerBtn,#addBtn{
+    width: 8rem;
+    height: 3rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;  
+    background-color: cadetblue;
+    color: antiquewhite;
+}
+.redInput{
+    border-color: red;
+}
+.hidden{
+    display: none;
+}
+
+
+/* форма с доп информацией */
+
+.addFormWrapp{
+    position: absolute;
+    top: 30px;
+    left: 200px;
+    background-color:bisque;
+    width: 70%;
+    height:530px ;
+}
+.formAddTitle{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+.headerBlock{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    justify-content: flex-end;
+    align-items: center;
+}
+#helloEmail{
+    margin: 20px;
+    width: auto;
+    font-weight: bold;
+}
+#exitBtn{
+    width: 2rem;
+    height: 1rem;
+    margin: 20px;
+    border: none;
+    border-bottom: 2px solid darkmagenta;
+    background: none;
+    color: darkmagenta;
+    cursor: pointer;
+}
+.addInputBlocks{
+    display: flex;
+    flex-wrap: wrap;
+}
+.addInput_wrap{
+    width: 400px;
+    height: 50px;
+    margin: 2rem;
+}
+.addErrorWrapp{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+}
+.addErrorWrapp div{
+    font-size: .7rem;
+    font-weight: bold;
+    color: red;
+}
+.additionalInput{
+    width: 95%;
+    height: 3rem;
+    outline: none;
+}
+.addErrorWrapp label{
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.addBtnBlock{
+    display: flex;
+    justify-content: center;
+}
+#addBtn{
+    margin: 1rem;
+}
+select{
+    font-size: 1.5rem;
+}
